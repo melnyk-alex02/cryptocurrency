@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -16,12 +18,12 @@ public class CryptoController {
     private final CryptoService cryptoService;
 
     @GetMapping("/prices/BTCUSDT")
-    public MarkPriceResponse getBTCUSDTPrice() throws JsonProcessingException {
-        return cryptoService.getBTCUSDTPrice();
+    public BigDecimal getBTCUSDTPrice() throws JsonProcessingException {
+        return cryptoService.getBTCUSDTPrice().getMarkPrice();
     }
 
     @GetMapping("/prices/ETHUSDT")
-    public MarkPriceResponse getETHUSDTPrices() throws JsonProcessingException {
-        return cryptoService.getETHUSDT();
+    public BigDecimal getETHUSDTPrices() throws JsonProcessingException {
+        return cryptoService.getETHUSDT().getMarkPrice();
     }
 }
